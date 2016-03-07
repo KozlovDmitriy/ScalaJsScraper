@@ -1,19 +1,18 @@
 package controllers
 
 import Scraper.JsScraper
-import play.api._
 import play.api.mvc._
-import play.api.data._
-import play.api.data.Forms._
-import play.api.data.validation.Constraints._
-import play.api.libs.json._
-import play.api.libs.json.Json
-import play.api.libs.json.Json._
 
-object Application extends Controller with JsScraper
+import scala.util.{Failure, Success}
+
+object Application extends Controller
 {
   def scrap(jsPages: String, jsScrap: String) = Action { implicit request =>
-    Ok("test")
+    val pages = JsScraper.jsScrap(jsPages, jsScrap) match {
+      case Success(v) => v
+      case Failure(_) => List()
+    }
+    Ok( pages mkString " " )
   }
 
   def index = Action { implicit request =>
