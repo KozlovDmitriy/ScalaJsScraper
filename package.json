@@ -1,0 +1,22 @@
+{
+  "name": "scala-js-scrapper",
+  "version": "0.0.1",
+  "description": "Web site for scrapping providing by scala, which use .js for scrapping instractions.",
+  "main": "build.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "scala",
+    "js",
+    "scala-play",
+    "scraper"
+  ],
+  "author": "Dmitriy Kozlov",
+  "license": "ISC",
+  "devDependencies": {
+  }
+}
