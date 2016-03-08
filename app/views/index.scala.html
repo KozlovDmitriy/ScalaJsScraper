@@ -8,25 +8,32 @@
         </div>
     </div>
 
-    <code><h2><small>function</small> getPages <small>( )</small></h2></code>
-    <div class="panel panel-default" class="editor-panel">
-        <div class="panel-body">
-            <pre class="jsEditor" id="editor">function getPages() { return [ 'http://google.com/' ]; }</pre>
+    @if( message != "" ) {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Parse result: @message</strong>
         </div>
-    </div>
+    }
 
-    <code><h2><small>function</small> scrap <small>( )</small></h2></code>
-    <div class="panel panel-default" class="editor-panel">
-        <div class="panel-body">
-            <pre class="jsEditor" id="scrapeEditor">function scrap() { return [ 'p' ]; }</pre>
+    <div class="row">
+        <div class="col-md-6">
+            <code><h2><small>function</small> getPages <small>( )</small></h2></code>
+            <div class="panel panel-default" class="editor-panel">
+                <div class="panel-body">
+                    <pre class="jsEditor" id="editor">function getPages() { return [ 'http://google.com/', 'http://yandex.com/' ]; }</pre>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Parse result: @message</strong>
+        <div class="col-md-6">
+            <code><h2><small>function</small> scrap <small>( )</small></h2></code>
+            <div class="panel panel-default" class="editor-panel">
+                <div class="panel-body">
+                    <pre class="jsEditor" id="scrapeEditor">function scrap(url, document) { return document.attr('a','href'); }</pre>
+                </div>
+            </div>
+        </div>
     </div>
 
 }
