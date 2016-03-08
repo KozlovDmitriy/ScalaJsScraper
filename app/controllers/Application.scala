@@ -8,11 +8,10 @@ import scala.util.{Failure, Success}
 object Application extends Controller
 {
   def scrap(jsPages: String, jsScrap: String) = Action { implicit request =>
-    val pages = JsScraper.jsScrap(jsPages, jsScrap) match {
-      case Success(v) => v
-      case Failure(_) => List()
+    JsScraper.jsScrap(jsPages, jsScrap) match {
+      case Success(s) => Ok( s mkString " " )
+      case Failure(f) => Ok( f getMessage )
     }
-    Ok( pages mkString " " )
   }
 
   def index = Action { implicit request =>
