@@ -9,15 +9,15 @@ class JsScraperFacade(url: String) {
   lazy val browser = new Browser
   lazy val document = browser.get(url)
 
-  def text(selector: String) : List[String] = {
+  def text(selector: String) : Array[String] = {
     val extractor = texts(selector)
     val results: Seq[String] = document >> extractor
-    results toList
+    results toArray
   }
 
-  def attr(selector: String, attribute: String) : List[String] = {
+  def attr(selector: String, attribute: String) : Array[String] = {
     val extractor = attrs(attribute)(selector)
     val results: Seq[String] = document >> extractor
-    results toList
+    results toArray
   }
 }

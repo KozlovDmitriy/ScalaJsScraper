@@ -10,11 +10,13 @@ import scala.util.{Success, Try}
 object JsScraper {
   lazy val manager: ScriptEngineManager = new ScriptEngineManager(null)
 
-  def matchJsInvokeResult(obj: Object) = obj match {
-    case string: String => List(string)
-    case list: List[String] => list
-    case mirror: ScriptObjectMirror => mirror.values().toList.asInstanceOf[List[String]]
-    case _ => List()
+  def matchJsInvokeResult(obj: Object) = Try[List[String]] {
+    obj match {
+      case array: Array[String] => array toList
+      case string: String => List(string)
+      case list: List[String] => list
+      case mirror: ScriptObjectMirror => mirror.values().toList.asInstanceOf[List[String]]
+    }
   }
 
   def getPages(js: String) = Try[List[String]] {
@@ -22,8 +24,9 @@ object JsScraper {
     val invocable = engine.asInstanceOf[javax.script.Invocable]
     engine.eval( js )
     val result = invocable.invokeFunction("getPages")
-    val list = matchJsInvokeResult(result)
-    list
+    matchJsInvokeResult(result) match {
+      case Success(v) => v
+    }
   }
 
   def scrap(js: String, url: String) = Try[List[String]] {
@@ -32,8 +35,9 @@ object JsScraper {
     val invocable = engine.asInstanceOf[javax.script.Invocable]
     engine.eval( js )
     val result = invocable.invokeFunction("scrap", url, facade)
-    val list = matchJsInvokeResult(result)
-    list
+    matchJsInvokeResult(result) match {
+      case Success(v) => v
+    }
   }
 
   def jsScrap(jsPages: String, jsScrap: String) = Try[List[String]] {
