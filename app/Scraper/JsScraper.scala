@@ -22,7 +22,8 @@ object JsScraper {
   def getPages(js: String) = Try[List[String]] {
     val engine = manager.getEngineByName("nashorn")
     val invocable = engine.asInstanceOf[javax.script.Invocable]
-    engine.eval( js )
+    val injectFacade = "var Document = Java.type(\"Scraper.JsScraperFacade\");";
+    engine.eval( injectFacade + js )
     val result = invocable.invokeFunction("getPages")
     matchJsInvokeResult(result) match {
       case Success(v) => v

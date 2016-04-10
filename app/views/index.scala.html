@@ -8,21 +8,39 @@
         </div>
     </div>
 
-    @if( message != "" ) {
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Parse result: @message</strong>
+    <br/>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-md-10">
+            <div id="errorAlerts"></div>
         </div>
-    }
+    </div>
+
+
+    <div class="panel panel-default hidden" id="downloadForm">
+        <div class="panel-heading clearfix">
+            <button class="btn btn-xs btn-warning pull-right" id="downloadAll">Download all</button>
+            Scraping results
+        </div>
+        <table class="table">
+        </table>
+    </div>
 
     <div class="row">
         <div class="col-md-6">
             <code><h2><small>function</small> getPages <small>( )</small></h2></code>
             <div class="panel panel-default" class="editor-panel">
                 <div class="panel-body">
-                    <pre class="jsEditor" id="editor">function getPages() { return [ 'http://google.com/', 'http://yandex.com/' ]; }</pre>
+                    <pre class="jsEditor" id="editor">function getPages() {
+    var url = 'https://www.google.com/search?client=ubuntu&channel=fs&q=nashorn+scala+class&ie=utf-8&oe=utf-8#channel=fs&q=nashorn+create+java+object';
+    var document = new Document(url);
+    var result = [];
+    var arr = document.attr('a.fl','href');
+    for(var i in arr) {
+        result.push( document.absolute(arr[i], 'https://www.google.com/') )
+    }
+    return result;
+}</pre>
                 </div>
             </div>
         </div>
@@ -30,7 +48,14 @@
             <code><h2><small>function</small> scrap <small>( )</small></h2></code>
             <div class="panel panel-default" class="editor-panel">
                 <div class="panel-body">
-                    <pre class="jsEditor" id="scrapeEditor">function scrap(url, document) { return document.attr('a','href'); }</pre>
+                    <pre class="jsEditor" id="scrapeEditor">function scrap(url, document) {
+    var result = [];
+    var arr = document.attr('img','src');
+    for(var i in arr) {
+        result.push( document.absolute(arr[i], url) )
+    }
+    return result;
+}</pre>
                 </div>
             </div>
         </div>
