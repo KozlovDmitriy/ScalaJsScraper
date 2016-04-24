@@ -4,7 +4,7 @@ import net.ruippeixotog.scalascraper.browser.Browser
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import net.ruippeixotog.scalascraper.dsl.DSL._
 
-// Intelij не справляется с подсветкой конструкций типа >> , не паримся
+// Intellij IDEA не справляется с подсветкой конструкций типа >> , не паримся
 class JsScraperFacade(url: String) {
   lazy val browser = new Browser
   lazy val document = browser.get(url)

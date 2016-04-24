@@ -32,12 +32,12 @@
             <div class="panel panel-default" class="editor-panel">
                 <div class="panel-body">
                     <pre class="jsEditor" id="editor">function getPages() {
-    var url = 'https://www.google.com/search?client=ubuntu&channel=fs&q=nashorn+scala+class&ie=utf-8&oe=utf-8#channel=fs&q=nashorn+create+java+object';
+    var url = 'http://www.kartinki24.ru/';
     var document = new Document(url);
     var result = [];
-    var arr = document.attr('a.fl','href');
+    var arr = document.attr('.droplinebar a','href');
     for(var i in arr) {
-        result.push( document.absolute(arr[i], 'https://www.google.com/') )
+        result.push( document.absolute(arr[i], 'http://www.kartinki24.ru/') )
     }
     return result;
 }</pre>

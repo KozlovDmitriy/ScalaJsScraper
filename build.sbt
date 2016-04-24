@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.3.0",
   "org.webjars" % "bootstrap" % "3.3.4",
   "org.webjars" % "highlightjs" % "8.0-3",
-  "org.webjars" % "ace" % "01.08.2014"
+  "org.webjars" % "ace" % "01.08.2014",
+  "org.webjars" % "jszip" % "2.4.0"
 )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
