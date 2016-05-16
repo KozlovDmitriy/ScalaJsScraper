@@ -40,9 +40,14 @@ object MainConsole {
       // arguments are bad, error message will have been displayed
     }*/
     val sources = args.map( path => {
-        val source = Source.fromFile( path )
-        val content = try source.mkString finally source.close()
-        content
+      val source = Source.fromFile( path )
+      val content = try source.mkString catch {
+        case e => {
+          println(e.getMessage())
+          ""
+        }
+      } finally source.close()
+      content
     } ).reduce(_+_)
     scrap(sources, sources)
   }
