@@ -15,9 +15,13 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.4",
   "org.webjars" % "highlightjs" % "8.0-3",
   "org.webjars" % "ace" % "01.08.2014",
-  "org.webjars" % "jszip" % "2.4.0"
+  "org.webjars" % "jszip" % "2.4.0",
+  //Console
+  "com.github.scopt" %% "scopt" % "3.4.0"
 )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+
+resolvers += Resolver.sonatypeRepo("public")
